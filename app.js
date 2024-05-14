@@ -1,9 +1,11 @@
-
-let boxes = document.querySelector(".box");
+let boxes = document.querySelectorAll(".box");
 let resetBtn = document.querySelector("#reset-btn");
-
+let newGameBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg");
 let turnO = true;
 
+// declaring the all the winning possibility
 const winpatterns = [
   [0, 1, 2],
   [3, 4, 5],
@@ -15,29 +17,66 @@ const winpatterns = [
   [2, 4, 6],
 ];
 
-
-[boxes].forEach((box) => {
-    box.addEventListener("click",() => {
-        console.log ("good morning");
-        if(turnO){
-            box.innerText = "O";
-            turnO=false;            
-        }
-        else{
-            box.innerText="X";
-            turnO =true;
-          
-        }
-        box.disabled = true;
-
-        checkwinner();
-    }); 
-
-
-});
-const checkwinner = () =>{
-    for (let pattern of winpatterns){
-        console.log(pattern[0],pattern[1],pattern[2]); 
-        console.log(boxes[pattern[0]].innerText,boxes[pattern[1]].innerText,boxes[pattern[2]].innerText); 
-    }
+// to rest the complet game to start
+const resetGame =() =>{
+    let turnO = true;
+    enableBoxes();
+    msgContainer.classList.add("hide");
 }
+// for traversing through each boxes
+boxes.forEach((box) => {
+  box.addEventListener("click", () => {
+    if (turnO) {
+      box.innerText = "O";
+      turnO = false;
+    } else {
+      box.innerText = "X";
+      turnO = true;
+    }
+    box.disabled = true;
+
+    checkwinner();
+  });
+});
+
+//to disable to the rest of button after declaring the winner
+const disableBoxes =() =>
+    {
+        for(box of boxes){
+            box.disabled = true;
+        }
+    }
+
+    const enableBoxes =() =>
+        {
+            for(box of boxes){
+                box.disabled= false;
+                box.innerText ="";
+            }
+        }
+
+        // function to print the winner of the game
+const showWinner = (winner) => {
+  msg.innerText = `Congratulations, Winner is ${winner}`;
+  msgContainer.classList.remove("hide");
+  
+  disableBoxes();
+};
+//function to check the winning condition of the game
+const checkwinner = () => {
+  for (let pattern of winpatterns) {
+    let pos1val = boxes[pattern[0]].innerText;
+    let pos2val = boxes[pattern[1]].innerText;
+    let pos3val = boxes[pattern[2]].innerText;
+//to check if there is no empty boxes left out
+    if (pos1val != "" && pos2val != "" && pos3val != "") {
+      if (pos1val == pos2val && pos2val == pos3val) {
+        showWinner(pos1val);
+       
+      }
+    }
+  }
+};
+// calling the function for the reset and new game
+newGameBtn.addEventListener("click",resetGame);
+resetBtn.addEventListener("click",resetGame);

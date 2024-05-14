@@ -8,14 +8,14 @@ body{
     text-align: center;
     
 }
-
+/* styling the container */
 .container{
   height: 070vh;  
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
+/*styling the game  */
 .game{
     height:60vmin;
     width: 60vmin;
@@ -25,7 +25,7 @@ body{
    align-items: center;
    gap:1.5vmin;
 }
-
+/* styling the box */
 .box{
     background-color: #ffffc7;
     height: 18vmin;
@@ -37,7 +37,8 @@ body{
     color:brown ;
 }
 
-.reset-btn{
+/* styling the resent button */
+#reset-btn{
     padding: 1rem;
     font-size: 1.25rem;
     background-color: black;
@@ -45,4 +46,33 @@ body{
     border-radius:1rem;
     border:none;
 
+}
+/* styling the new game button */
+#new-btn{
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: black;
+    color: white;
+    border-radius:1rem;
+    border:none;
+}
+
+#msg{
+    font-weight: bold;
+    color: #FF5964;
+    font-size: 8vmin;
+}
+
+.msg-container{
+    height: 100vmin;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+}
+/* To hide and show the content of the message */
+.hide {
+    display: none;
 }

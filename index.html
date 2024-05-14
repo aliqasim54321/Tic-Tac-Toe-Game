@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- to show and hide the messsage content of the winner-->
+    <div class="msg-container hide">
+      <p id="msg">Winner</p>
+      <button id="new-btn">New Game</button>
+    </div>
     <main>
+      <!-- the whole tic tok buttons are placed in this class -->
       <h1>Tic Tac Toe</h1>
       <div class="container">
         <div class="game">
@@ -22,7 +28,8 @@
           <button class="box"></button>
         </div>
       </div>
-      <button class="reset-btn">Reset Button</button>
+    <!-- Button for the reset of the game -->
+      <button id="reset-btn">Reset Button</button>
     </main>
 
     <script src="app.js"></script>
