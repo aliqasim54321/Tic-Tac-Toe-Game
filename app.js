@@ -18,11 +18,11 @@ const winpatterns = [
 ];
 
 // to rest the complet game to start
-const resetGame =() =>{
-    let turnO = true;
-    enableBoxes();
-    msgContainer.classList.add("hide");
-}
+const resetGame = () => {
+  let turnO = true;
+  enableBoxes();
+  msgContainer.classList.add("hide");
+};
 // for traversing through each boxes
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
@@ -40,43 +40,49 @@ boxes.forEach((box) => {
 });
 
 //to disable to the rest of button after declaring the winner
-const disableBoxes =() =>
-    {
-        for(box of boxes){
-            box.disabled = true;
-        }
-    }
+const disableBoxes = () => {
+  for (box of boxes) {
+    box.disabled = true;
+  }
+};
 
-    const enableBoxes =() =>
-        {
-            for(box of boxes){
-                box.disabled= false;
-                box.innerText ="";
-            }
-        }
+const enableBoxes = () => {
+  for (box of boxes) {
+    box.disabled = false;
+    box.innerText = "";
+  }
+};
 
-        // function to print the winner of the game
+// function to print the winner of the game
 const showWinner = (winner) => {
   msg.innerText = `Congratulations, Winner is ${winner}`;
   msgContainer.classList.remove("hide");
-  
+
   disableBoxes();
 };
 //function to check the winning condition of the game
 const checkwinner = () => {
+  let draw = true;
   for (let pattern of winpatterns) {
     let pos1val = boxes[pattern[0]].innerText;
     let pos2val = boxes[pattern[1]].innerText;
     let pos3val = boxes[pattern[2]].innerText;
-//to check if there is no empty boxes left out
+    //to check if there is no empty boxes left out
     if (pos1val != "" && pos2val != "" && pos3val != "") {
       if (pos1val == pos2val && pos2val == pos3val) {
         showWinner(pos1val);
        
       }
+    } else {
+      draw = false;
     }
+  }if (draw) {
+    msg.innerText = "It's a draw!";
+    msgContainer.classList.remove("hide");
+    disableBoxes();
   }
 };
+
 // calling the function for the reset and new game
-newGameBtn.addEventListener("click",resetGame);
-resetBtn.addEventListener("click",resetGame);
+newGameBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
